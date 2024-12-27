@@ -9,7 +9,7 @@ import (
 )
 
 // Returns responce body from an API call. JSON expected.
-func RespBody(apiCall string) []byte {
+func GetRespBody(apiCall string) []byte {
 	resp, err := http.Get(apiCall)
 	if err != nil {
 		panic(err)

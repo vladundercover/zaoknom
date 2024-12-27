@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	rawResp := h.RespBody(weather.APICallFor("MSK"))
+	rawResp := h.GetRespBody(weather.APICallFor("MSK"))
 	respData := h.TypefyResp(rawResp)
 	hourlyForecast := respData["hourly"].(map[string]interface{})
 
