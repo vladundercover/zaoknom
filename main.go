@@ -8,10 +8,8 @@ import (
 	"zaoknom/weather"
 )
 
-var weatherAPICall string
-
 func main() {
-	weatherAPICall = weather.BuildCallfor("SPB")
+	weatherAPICall := weather.CheckFor("MSK")
 	resp, _ := http.Get(weatherAPICall)
 	body, _ := io.ReadAll(resp.Body)
 
@@ -24,11 +22,11 @@ func main() {
 	hourly := dat["hourly"].(map[string]interface{})
 
 	fmt.Printf(`Current temp: %v°C
-Feels like: %v°C
-Chance of rain/snow %v%%
-Wind speed: %vm/s
-Precipitation %vmm
-UV index %v`,
+	Feels like: %v°C
+	Chance of rain/snow %v%%
+	Wind speed: %vm/s
+	Precipitation %vmm
+	UV index %v`,
 		hourly["temperature_2m"].([]interface{})[1],
 		hourly["apparent_temperature"].([]interface{})[1],
 		hourly["precipitation_probability"].([]interface{})[1],
@@ -38,19 +36,18 @@ UV index %v`,
 
 	fmt.Printf(`
 
-	In the next hour expect:
+		In the next hour expect:
 
-	Temp: %v°C
-	Will feel like: %v°C
-	Chance of rain/snow %v%%
-	Wind speed: %vm/s
-	Precipitation %vmm
-	UV index %v`,
+		Temp: %v°C
+		Will feel like: %v°C
+		Chance of rain/snow %v%%
+		Wind speed: %vm/s
+		Precipitation %vmm
+		UV index %v`,
 		hourly["temperature_2m"].([]interface{})[2],
 		hourly["apparent_temperature"].([]interface{})[2],
 		hourly["precipitation_probability"].([]interface{})[2],
 		hourly["wind_speed_10m"].([]interface{})[2],
 		hourly["precipitation"].([]interface{})[2],
 		hourly["uv_index"].([]interface{})[2])
-
 }
