@@ -25,7 +25,7 @@ var citiList = map[string]City{
 }
 
 // Weather API Call
-func CheckFor(cityCode string) string {
+func APICallFor(cityCode string) string {
 	apiUrl := weatherAPIURL
 
 	city := citiList[cityCode]
