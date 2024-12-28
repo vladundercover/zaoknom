@@ -2,7 +2,6 @@ package helpers
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -34,32 +33,4 @@ func TypefyResp(data []byte) map[string]interface{} {
 	}
 
 	return digested
-}
-
-// Prints data from forecast. Set which next hour forecast in horsFwd
-func DumpWeatherDigest(weatherData map[string]interface{}, horsFwd int) {
-	var header string
-	switch horsFwd {
-	case 0:
-		header = "Current weather:"
-	case 1:
-		header = fmt.Sprintf("In %d hour expect:", horsFwd)
-	default:
-		header = fmt.Sprintf("In %d hours expect:", horsFwd)
-	}
-
-	fmt.Printf(`%s
-	Temperature: %v°C
-	Feels like: %v°C
-	Chance of rain/snow %v%%
-	Wind speed: %vm/s
-	Precipitation %vmm
-	UV index %v`,
-		header,
-		weatherData["temperature_2m"].([]interface{})[horsFwd],
-		weatherData["apparent_temperature"].([]interface{})[horsFwd],
-		weatherData["precipitation_probability"].([]interface{})[horsFwd],
-		weatherData["wind_speed_10m"].([]interface{})[horsFwd],
-		weatherData["precipitation"].([]interface{})[horsFwd],
-		weatherData["uv_index"].([]interface{})[horsFwd])
 }

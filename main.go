@@ -1,15 +1,15 @@
 package main
 
 import (
-	h "zaoknom/helpers"
+	"zaoknom/helpers"
 	"zaoknom/weather"
 )
 
 func main() {
-	rawResp := h.GetRespBody(weather.APICallFor("MSK"))
-	respData := h.TypefyResp(rawResp)
+	rawResp := helpers.GetRespBody(weather.GetData("MSK"))
+	respData := helpers.TypefyResp(rawResp)
 	hourlyForecast := respData["hourly"].(map[string]interface{})
 
-	h.DumpWeatherDigest(hourlyForecast, 0)
-	h.DumpWeatherDigest(hourlyForecast, 1)
+	weather.DumpWeatherDigest(hourlyForecast, 0)
+	weather.DumpWeatherDigest(hourlyForecast, 1)
 }
