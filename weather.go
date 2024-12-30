@@ -1,4 +1,4 @@
-package weather
+package main
 
 import (
 	"fmt"
@@ -19,16 +19,24 @@ type Coord struct {
 	longitude float32
 }
 
-var citiList = map[string]City{
+var CityList = map[string]City{
 	"MSK": {"Moscow", "Europe/Moscow", Coord{55.7522, 37.6156}},
 	"SPB": {"Saint-Petersburg", "Europe/Moscow", Coord{59.9342, 30.3350}},
+}
+
+func getCityCodes(catalog map[string]City) []string {
+	var codes []string
+	for code := range catalog {
+		codes = append(codes, code)
+	}
+	return codes
 }
 
 // Weather API Call
 func GetData(cityCode string) string {
 	apiUrl := weatherAPIURL
 
-	city := citiList[cityCode]
+	city := CityList[cityCode]
 
 	forecast_days := 1
 	forecast_hours := 12
