@@ -1,15 +1,22 @@
 package main
 
 import (
-	"zaoknom/helpers"
-	"zaoknom/weather"
+	"fmt"
+	"os"
+
+	tea "github.com/charmbracelet/bubbletea"
 )
 
 func main() {
-	rawResp := helpers.GetRespBody(weather.GetData("MSK"))
-	respData := helpers.TypefyResp(rawResp)
-	hourlyForecast := respData["hourly"].(map[string]interface{})
+	p := tea.NewProgram(initialModel())
+	if _, err := p.Run(); err != nil {
+		fmt.Printf("Alas, there's been an error: %v", err)
+		os.Exit(1)
+	}
+	// rawResp := GetRespBody(GetData("MSK"))
+	// respData := TypefyResp(rawResp)
+	// hourlyForecast := respData["hourly"].(map[string]interface{})
 
-	weather.DumpWeatherDigest(hourlyForecast, 0)
-	weather.DumpWeatherDigest(hourlyForecast, 1)
+	// DumpWeatherDigest(hourlyForecast, 0)
+	// DumpWeatherDigest(hourlyForecast, 1)
 }

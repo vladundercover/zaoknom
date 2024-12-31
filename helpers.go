@@ -8,7 +8,7 @@ import (
 )
 
 // Returns responce body from an API call. JSON expected.
-func GetRespBody(apiCall string) []byte {
+func getRespBody(apiCall string) []byte {
 	resp, err := http.Get(apiCall)
 	if err != nil {
 		panic(err)
@@ -24,7 +24,7 @@ func GetRespBody(apiCall string) []byte {
 }
 
 // Converts JSON from raw responce into GO type
-func TypefyResp(data []byte) map[string]interface{} {
+func typefyResp(data []byte) map[string]interface{} {
 
 	// Chew raw data: init variable with arbitrary data structure
 	var digested map[string]interface{}

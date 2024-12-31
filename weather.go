@@ -19,7 +19,7 @@ type Coord struct {
 	longitude float32
 }
 
-var CityList = map[string]City{
+var cityList = map[string]City{
 	"MSK": {"Moscow", "Europe/Moscow", Coord{55.7522, 37.6156}},
 	"SPB": {"Saint-Petersburg", "Europe/Moscow", Coord{59.9342, 30.3350}},
 }
@@ -33,10 +33,10 @@ func getCityCodes(catalog map[string]City) []string {
 }
 
 // Weather API Call
-func GetData(cityCode string) string {
+func weatherAPICall(cityCode string) string {
 	apiUrl := weatherAPIURL
 
-	city := CityList[cityCode]
+	city := cityList[cityCode]
 
 	forecast_days := 1
 	forecast_hours := 12
@@ -48,7 +48,7 @@ func GetData(cityCode string) string {
 }
 
 // Prints data from forecast. Set which next hour forecast in horsFwd
-func DumpWeatherDigest(weatherData map[string]interface{}, horsFwd int) {
+func dumpWeatherDigest(weatherData map[string]interface{}, horsFwd int) string {
 	var header string
 	switch horsFwd {
 	case 0:
@@ -59,7 +59,7 @@ func DumpWeatherDigest(weatherData map[string]interface{}, horsFwd int) {
 		header = fmt.Sprintf("In %d hours expect:", horsFwd)
 	}
 
-	fmt.Printf(`%s
+	s := fmt.Sprintf(`%s
 	Temperature: %v°C
 	Feels like: %v°C
 	Chance of rain/snow %v%%
@@ -73,4 +73,6 @@ func DumpWeatherDigest(weatherData map[string]interface{}, horsFwd int) {
 		weatherData["wind_speed_10m"].([]interface{})[horsFwd],
 		weatherData["precipitation"].([]interface{})[horsFwd],
 		weatherData["uv_index"].([]interface{})[horsFwd])
+
+	return s
 }
