@@ -7,13 +7,11 @@ import (
 )
 
 type model struct {
-	cursor  int
-	choices []string
-	// selected     int
+	cursor       int
+	choices      []string
 	screen       string
 	forecastHour int
 	city         string
-	forecast     map[string]interface{}
 }
 
 func initialModel() model {
@@ -53,9 +51,11 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.screen = "weather"
 				m.cursor = 0
 			case "weather":
-				rawResp := getRespBody(weatherAPICall(m.city))
-				respData := typefyResp(rawResp)
-				m.forecast = respData["hourly"].(map[string]interface{})
+				// rawResp := getRespBody(weatherAPICall(m.city))
+				// respData := typefyResp(rawResp)
+				// hourlyForecast := respData["hourly"].(map[string]interface{})
+
+				// m.forecast = dumpWeatherDigest(hourlyForecast, m.forecastHour)
 			}
 		}
 	}
@@ -65,7 +65,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 // The main view, which just calls the appropriate sub-view
 func (m model) View() string {
-	s := "Check weather"
+	s := "Check weather\n\n"
 
 	switch m.screen {
 	case "city":
@@ -91,7 +91,12 @@ func hoursView(m model) string {
 }
 
 func weatherView(m model) string {
-	s := dumpWeatherDigest(m.forecast, m.forecastHour)
+	var s string
+	rawResp := getRespBody(weatherAPICall(m.city))
+	respData := typefyResp(rawResp)
+	hourlyForecast := respData["hourly"].(map[string]interface{})
+
+	s += dumpWeatherDigest(hourlyForecast, m.forecastHour)
 	return s
 }
 

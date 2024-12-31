@@ -13,10 +13,10 @@ func main() {
 		fmt.Printf("Alas, there's been an error: %v", err)
 		os.Exit(1)
 	}
-	// rawResp := GetRespBody(GetData("MSK"))
-	// respData := TypefyResp(rawResp)
+
+	// rawResp := getRespBody(weatherAPICall("MSK"))
+	// respData := typefyResp(rawResp)
 	// hourlyForecast := respData["hourly"].(map[string]interface{})
 
-	// DumpWeatherDigest(hourlyForecast, 0)
-	// DumpWeatherDigest(hourlyForecast, 1)
+	// fmt.Println(dumpWeatherDigest(hourlyForecast, 0))
 }

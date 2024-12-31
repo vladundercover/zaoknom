@@ -52,20 +52,21 @@ func dumpWeatherDigest(weatherData map[string]interface{}, horsFwd int) string {
 	var header string
 	switch horsFwd {
 	case 0:
-		header = "Current weather:"
+		header = "Current weather:\n\n"
 	case 1:
-		header = fmt.Sprintf("In %d hour expect:", horsFwd)
+		header = fmt.Sprintf("In %d hour expect:\n\n", horsFwd)
 	default:
-		header = fmt.Sprintf("In %d hours expect:", horsFwd)
+		header = fmt.Sprintf("In %d hours expect:\n\n", horsFwd)
 	}
 
-	s := fmt.Sprintf(`%s
-	Temperature: %v°C
-	Feels like: %v°C
-	Chance of rain/snow %v%%
-	Wind speed: %vm/s
-	Precipitation %vmm
-	UV index %v`,
+	s := fmt.Sprintf(`
+%s
+Temperature: %v°C
+Feels like: %v°C
+Chance of rain/snow %v%%
+Wind speed: %vm/s
+Precipitation %vmm
+UV index %v`,
 		header,
 		weatherData["temperature_2m"].([]interface{})[horsFwd],
 		weatherData["apparent_temperature"].([]interface{})[horsFwd],
