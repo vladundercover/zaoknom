@@ -22,10 +22,10 @@ type Coord struct {
 var cityList = map[string]City{
 	"MSK": {"Moscow", "Europe/Moscow", Coord{55.7522, 37.6156}},
 	"SPB": {"Saint-Petersburg", "Europe/Moscow", Coord{59.9342, 30.3350}},
-	"LPK": {"Lipetsk", "Europe/Moscow", Coord{52.37, 39.36}},
-	"PTG": {"Pyatigorsk", "Europe/Moscow", Coord{44.03, 43.03}},
-	"STW": {"Stavropol", "Europe/Moscow", Coord{45.02, 41.58}},
-	"KSV": {"Kislovodsk", "Europe/Moscow", Coord{43.54, 42.43}},
+	"LPK": {"Lipetsk", "Europe/Moscow", Coord{52.3701, 39.3601}},
+	"PTG": {"Pyatigorsk", "Europe/Moscow", Coord{44.0301, 43.0301}},
+	"STW": {"Stavropol", "Europe/Moscow", Coord{45.0201, 41.5801}},
+	"KSV": {"Kislovodsk", "Europe/Moscow", Coord{43.5401, 42.4301}},
 }
 
 func getCityCodes(catalog map[string]City) []string {
