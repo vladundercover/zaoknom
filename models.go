@@ -51,11 +51,6 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.screen = "weather"
 				m.cursor = 0
 			case "weather":
-				// rawResp := getRespBody(weatherAPICall(m.city))
-				// respData := typefyResp(rawResp)
-				// hourlyForecast := respData["hourly"].(map[string]interface{})
-
-				// m.forecast = dumpWeatherDigest(hourlyForecast, m.forecastHour)
 			}
 		}
 	}
@@ -95,7 +90,7 @@ func weatherView(m model) string {
 	rawResp := getRespBody(weatherAPICall(m.city))
 	respData := typefyResp(rawResp)
 	hourlyForecast := respData["hourly"].(map[string]interface{})
-
+	s = cityList[m.city].name + "\n"
 	s += dumpWeatherDigest(hourlyForecast, m.forecastHour)
 	return s
 }

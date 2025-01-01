@@ -22,6 +22,10 @@ type Coord struct {
 var cityList = map[string]City{
 	"MSK": {"Moscow", "Europe/Moscow", Coord{55.7522, 37.6156}},
 	"SPB": {"Saint-Petersburg", "Europe/Moscow", Coord{59.9342, 30.3350}},
+	"LPK": {"Lipetsk", "Europe/Moscow", Coord{52.37, 39.36}},
+	"PTG": {"Pyatigorsk", "Europe/Moscow", Coord{44.03, 43.03}},
+	"STW": {"Stavropol", "Europe/Moscow", Coord{45.02, 41.58}},
+	"KSV": {"Kislovodsk", "Europe/Moscow", Coord{43.54, 42.43}},
 }
 
 func getCityCodes(catalog map[string]City) []string {
@@ -52,7 +56,7 @@ func dumpWeatherDigest(weatherData map[string]interface{}, horsFwd int) string {
 	var header string
 	switch horsFwd {
 	case 0:
-		header = "Current weather:\n\n"
+		header = "Current weather:\n"
 	case 1:
 		header = fmt.Sprintf("In %d hour expect:\n\n", horsFwd)
 	default:
