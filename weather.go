@@ -26,6 +26,7 @@ var cityList = map[string]City{
 	"PTG": {"Pyatigorsk", "Europe/Moscow", Coord{44.0301, 43.0301}},
 	"STW": {"Stavropol", "Europe/Moscow", Coord{45.0201, 41.5801}},
 	"KSV": {"Kislovodsk", "Europe/Moscow", Coord{43.5401, 42.4301}},
+	"IRK": {"Irkutsk", "Asia/Singapore", Coord{52.2978, 104.2964}},
 }
 
 func getCityCodes(catalog map[string]City) []string {
